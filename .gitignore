@@ -1,0 +1,21 @@
+## IntelliJ files and folders
+/.idea/
+*.iml
+
+## Maven files and folders
+/target
+/classes
+/checkouts
+pom.xml
+pom.xml.asc
+
+## Clojure files and folders
+profiles.clj
+/.lein-*
+/.nrepl-port
+/.prepl-port
+/.clj-kondo/
+
+## Java files and folders
+*.jar
+*.class
