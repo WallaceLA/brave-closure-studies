@@ -1,5 +1,10 @@
 (ns closure-studies.exercises.chapters1-3
   (:require [clojure.string]))
+
+(comment
+  "Chapter 3 - Do Things: A Clojure Crash Course"
+  "https://www.braveclojure.com/do-things/")
+
 (def asym-hobbit-body-parts
   [{:name "head" :size 3}
    {:name "left-eye" :size 1}
