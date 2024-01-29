@@ -199,6 +199,71 @@
   to keep taking entries until it reaches the first April entry.")
 
 
+;; _________________________________________________________________
+(comment "filter and some")
+
+(comment
+  "Use filter to return all elements of a sequence that test true for a predicate function."
+
+  "Here are the journal entries where human consumption is less than five liters:"
+  (filter #(< (:human %) 5) food-journal)
+  ;=> ({:month 2, :day 1, :human 4.9, :critter 2.1}
+  ; {:month 3, :day 1, :human 4.2, :critter 3.3}
+  ; {:month 3, :day 2, :human 4.0, :critter 3.8}
+  ; {:month 4, :day 1, :human 3.7, :critter 3.9}
+  ; {:month 4, :day 2, :human 3.7, :critter 3.6})
+
+  "Why we didn’t just use filter in the take-while and drop-while examples earlier?"
+  "filter can end up processing all of your data, which isn’t always necessary.
+  Because the food journal is already sorted by date, we know that take-while will return the data we want without
+  having to examine any of the data we won’t need. Therefore, take-while can be more efficient.")
+
+(comment
+  "Often, you want to know whether a collection contains any values that test true for a predicate function.
+  The 'some' function does that, returning the first truthy value (any value that’s not false or nil) returned by a predicate function:"
+  (some #(> (:critter %) 5) food-journal)
+  ; => nil
+
+  (some #(> (:critter %) 3) food-journal)
+  ; => true
+
+  "Notice that the return value in the second example is true and not the actual entry that produced the true value.
+   The reason is that the anonymous function #(> (:critter %) 3) returns true or false.
+   Here’s how you could return the entry:"
+
+  (some #(and (> (:critter %) 3) %) food-journal)
+  ; => {:month 3 :day 1 :human 4.2 :critter 3.3}
+
+  "Here, a slightly different anonymous function uses 'and' to first check whether the condition (> (:critter %) 3) is true,
+   'and' then returns the entry when the condition is indeed true.")
+
+
+;; _________________________________________________________________
+(comment "sort and sort-by")
+
+(comment
+  "You can sort elements in ascending order with sort"
+  (sort [3 1 2])
+  ; => (1 2 3)
+
+  (sort ["aaa" "c" "bb"])
+  ; => ("aaa" "bb" "c")
+
+  "If your sorting needs are more complicated, you can use sort-by, which allows you to apply a function (sometimes called a key function)
+  to the elements of a sequence and use the values it returns to determine the sort order."
+  (sort-by count ["aaa" "c" "bb"]))
+  ; => ("c" "bb" "aaa")
+
+
+;; _________________________________________________________________
+(comment "concat")
+
+(comment
+  "Finally, concat simply appends the members of one sequence to the end of another:"
+  (concat [1 2] [3 4]))
+  ; => (1 2 3 4)
+
+
 
 
 
